@@ -7,7 +7,7 @@ const FolderSchema = new mongoose.Schema({
     owner: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
     root: {type: Boolean, required: true},
     name: {type: String, required: [true, 'name folder']},
-    path: {type: String, required: notRootFolder},
+    path: {type: String, required: true},
     created: { type: Date, default: Date.now },
     content: [{type: mongoose.Schema.Types.ObjectId, ref: 'File'}],
     sub_folders: [{type: mongoose.Schema.Types.ObjectId, ref: 'Folder'}],
