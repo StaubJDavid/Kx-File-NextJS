@@ -10,11 +10,26 @@ import { GetStaticProps } from 'next';
 import {startClock} from '../redux/actions/timerActions';
 import Examples from '../components/examples';
 import DownloadButton from '../components/DownloadButton';
+import axios from 'axios';
+import { useRouter } from 'next/router';
 
 
 //FOR GETTING DATA USE/TRY useSWR
 const Dashboard = () => {
-
+  const router = useRouter();
+  useEffect(() => {
+      axios.post(`${process.env.NEXT_PUBLIC_PUBLIC_URL}/api/auth/token`)
+      .then(
+        res => {
+          console.log("Have cookie and good");
+        }
+      )
+      .catch(
+        err => {
+          router.push("login");
+        }
+      )
+  },[]);
 
   return (
     <div>
